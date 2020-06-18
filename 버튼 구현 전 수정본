@@ -1,0 +1,57 @@
+##변수 선언 부분##
+choice, ingredients_add, ingredients_delet, ingredients_clear_choice = 0
+
+myingredients = []    # 빈 list 선언
+
+while True:
+    print("1. 재료 직접 추가")
+    print("2. 재료 삭제")
+    print("3. 재료목록 초기화")
+    choice = input("선택 >>  ")  # 선택한 메뉴 실행
+    print()
+
+##함수 선언 부분##
+    def ingredients_list():
+        if choice == "1":  # 1. 재료 추가의 경우
+            while True:
+                ingredients_add = input("추가할 재료를 입력해주세요 : (만일 x를 입력하시면 재료메뉴화면으로 돌아갑니다.)")
+
+                if ingredients_add == "x" :  #만일 x를 입력받으면 break
+                    print(" %s " % myingredients )
+                    break
+
+                myingredients.append(ingredients_add)  # 입력받은 것을 append를 통해 myingredients list에 추가
+                print(" %s " % myingredients)  # 입력받은 것을 확인할 수 있도록 print
+
+        if choice == "2":  # 2. 재료 삭제의 경우
+            while True:
+                ingredients_delet = input("삭제할 재료를 입력해주세요 : (만일 x를 입력하시면 재료메뉴화면으로 돌아갑니다.)")
+                if ingredients_delet == "x":
+                    print(" %s " % myingredients)
+                    break
+
+                elif ingredients_delet in myingredients:
+                    myingredients.remove(ingredients_delet)   #입력받은 것을 remove를 통해 myingredients list에서 삭제
+                    print(" %s " % myingredients)
+                    break
+
+                elif ingredients_delet not in myingredients:   #만일 myingredients list에 없는 재료일 경우
+                    print(" %s " % myingredients)
+                    print("입력하신 재료는 재료목록에 없는 재료입니다.")
+
+
+        if choice == "3":  # 3. 재료목록 초기화의 경우
+            while True:
+                ingredients_clear_choice = input("재료 목록을 초기화하시겠습니까?(1: 예, 2: 아니오) ")
+                if ingredients_clear_choice == "1" :
+                    myingredients.clear()
+                    print("초기화 되었습니다.")
+                    print(" %s " % myingredients)
+                    break
+
+                elif ingredients_clear_choice == "2" :
+                    print("취소되었습니다.")
+                    print(" %s " % myingredients)
+                    break
+
+    ingredients_list()
